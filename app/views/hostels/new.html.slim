@@ -1,0 +1,10 @@
+h1
+  | New Hostel
+= render partial: 'form', locals: {disable: false}
+.col-sm-offset-4.col-sm-4.center
+  - case @hostel.location_type
+
+  - when "Region"
+    = link_to 'Back', region_path(@hostel.location_id), class: "btn btn-default"
+  - when "City"
+    = link_to 'Back', city_path(@hostel.location_id), class: "btn btn-default"

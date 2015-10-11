@@ -1,0 +1,64 @@
+.form-group.col-sm-offset-4.col-sm-4.center
+  p#notice
+    = notice
+  h4
+    strong
+      | Region: 
+    = @region.name
+    = link_to 'Edit', edit_region_path(@region), class: "btn btn-link"
+  h4
+
+  table.table.table-striped.table-bordered.table-hover
+    thead
+      tr
+        th.col-xs-1
+          | City
+        th.col-sm-1[colspan="3"]
+    tbody
+      - @region.city.each do |city|
+        tr
+          td
+            = city.name
+          td
+            = link_to 'Show', city_path(city),
+                              class: "btn btn-default btn-xs btn-info"
+          td
+            = link_to 'Edit', edit_city_path(city),
+                              class: "btn btn-default btn-xs btn-warning"
+          td
+            = link_to 'Destroy', city_path(city), method: :delete,
+                                 data: { confirm: 'Are you sure?' },
+                                 class: "btn btn-xs btn-danger"
+  table.table.table-striped.table-bordered.table-hover
+    thead
+      tr
+        th.col-xs-1
+          | Hostel
+        th.col-sm-1[colspan="3"]
+    tbody
+      - @region.hostel.each do |hostel|
+        tr
+          td
+            = hostel.name
+          td
+            = link_to 'Show', hostel_path(hostel),
+                              class: "btn btn-default btn-xs btn-info"
+          td
+            = link_to 'Edit', edit_hostel_path(hostel),
+                              class: "btn btn-default btn-xs btn-warning"
+          td
+            = link_to 'Destroy', hostel_path(hostel), method: :delete,
+                                 data: { confirm: 'Are you sure?' },
+                                 class: "btn btn-xs btn-danger"
+  .form-group
+    .col-sm-offset-4.col-sm-4.center
+      = link_to 'New City', { controller: "cities", action: "new", 
+                              region_id: @region.id },
+                            class: "btn btn-default"
+      = link_to 'New Hostel', { controller: "hostels", 
+                                action: "new", 
+                                location_id: @region.id, 
+                                type: "Region" },
+                              class: "btn btn-default"
+.col-sm-offset-4.col-sm-4.center
+  = link_to 'Back', @region.country, class: "btn btn-default"

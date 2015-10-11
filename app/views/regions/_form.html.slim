@@ -1,0 +1,12 @@
+= form_for(@region, html: {class: "form-horizontal center"})  do |f|
+  - if @region.errors.any?
+    = render partial: 'errors/errors', locals: {f: @region}
+
+  .form-group
+    = f.label :name, 'Name', class: "col-sm-4 control-label"
+    .col-sm-4
+      = f.text_field :name, class: "form-control", placeholder: "Name"
+      = f.hidden_field :country_id, class: "form-control"
+  .form-group
+    .col-sm-offset-4.col-sm-4
+      = f.submit "Save", class: "btn btn-default"

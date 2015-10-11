@@ -1,0 +1,26 @@
+- if @hostel.errors.any?
+  = render partial: 'errors/errors', locals: {f: @hostel}
+
+.form-group
+  = f.label :name, 'Name', class: "col-sm-4 control-label"
+  .col-sm-4
+    = f.text_field :name, class: "form-control", placeholder: "Name"
+.form-group
+  = f.label :address, 'Address', class: "col-sm-4 control-label"
+  .col-sm-4
+    = f.text_field :address, class: "form-control", 
+                             placeholder: "Address"
+.form-group
+  = f.label :info, 'Info', class: "col-sm-4 control-label"
+  .col-sm-4
+    = f.text_area :info, rows: "5", class: "form-control"
+.form-group
+  = f.label :average_price, 'Average price', class: "col-sm-4 control-label"
+  .col-sm-4
+    = f.text_field :average_price, class: "form-control",
+                                   placeholder: "Average price"
+    = f.hidden_field :location_id, class: "form-control"
+    = f.hidden_field :location_type, class: "form-control"
+.form-group
+  .col-sm-offset-4.col-sm-4
+    = f.submit "Save", class: "btn btn-default"

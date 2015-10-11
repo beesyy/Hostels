@@ -1,0 +1,51 @@
+h1
+  | Listing Hostels
+.form-group.col-sm-offset-3.col-sm-4.center  
+  table.table.table-striped.table-bordered.table-hover
+    thead
+      tr
+        th.center
+          | Name
+        th.center
+          | Address
+        th.center
+          | Info
+        th.center
+          | Average price
+        th.center
+          | City
+        th.center
+          | Region
+        th.center
+          | Country
+
+    tbody
+      - @hostels.each do |hostel|
+        tr
+          td
+            = hostel.name
+          td
+            = hostel.address
+          td
+            = hostel.info
+          td
+            = hostel.average_price
+          td
+            - if hostel.location_type == "City"
+              = City.find(hostel.location_id).name
+          td
+            - case hostel.location_type
+            - when "City"
+              = City.find(hostel.location_id).region.name
+            - when "Region" 
+              = Region.find(hostel.location_id).name
+          td
+            - case hostel.location_type
+            - when "City"
+              = City.find(hostel.location_id).region.country.name
+            - when "Region" 
+              = Region.find(hostel.location_id).country.name
+
+
+.col-sm-offset-4.col-sm-4.center
+  = link_to 'Back', countries_path, class: "btn btn-default"

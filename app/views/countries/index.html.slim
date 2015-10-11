@@ -1,0 +1,31 @@
+.form-group.col-sm-offset-4.col-sm-4.center
+  h1
+    | Listing Countries
+  table.table.table-striped.table-bordered.table-hover
+    thead
+      tr
+        th.col-xs-1
+          | Country
+        th.col-sm-1[colspan="3"]
+    tbody
+      - @countries.each do |country|
+        tr
+          td
+            = country.name
+          td
+            = link_to 'Show', country_path(country),
+                              class: "btn btn-default btn-xs btn-info"
+          td
+            = link_to 'Edit', edit_country_path(country),
+                              class: "btn btn-default btn-xs btn-warning"
+          td
+            = link_to 'Destroy', country, method: :delete,
+                                 data: { confirm: 'Are you sure?' },
+                                 class: "btn btn-xs btn-danger"
+  .col-sm-offset-4.col-sm-4.center
+    = link_to 'New Country', new_country_path, class: "btn btn-default"
+
+.col-sm-offset-4.col-sm-4.center  
+  = link_to 'Region list', regions_path, class: "btn btn-default"
+  = link_to 'City list', cities_path, class: "btn btn-default"
+  = link_to 'Hostel list', hostels_path, class: "btn btn-default"

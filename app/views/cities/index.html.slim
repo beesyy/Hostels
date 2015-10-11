@@ -1,0 +1,24 @@
+h1
+  | Listing Cities
+.form-group.col-sm-offset-4.col-sm-4.center  
+  table.table.table-striped.table-bordered.table-hover
+    thead
+      tr
+        th.center
+          | City
+        th.center
+          | Region
+        th.center
+          | Country
+    tbody
+      - @cities.each do |city|
+        tr
+          td
+            = city.name
+          td
+            = city.region.name
+          td
+            = city.region.country.name
+
+.col-sm-offset-4.col-sm-4.center
+  = link_to 'Back', countries_path, class: "btn btn-default"

@@ -1,0 +1,38 @@
+.form-group.col-sm-offset-4.col-sm-4.center
+  p#notice
+    = notice
+    
+  h4
+    strong
+      | Country: 
+    = @country.name
+    = link_to 'Edit', edit_country_path(@country), class: "btn btn-link"
+  table.table.table-striped.table-bordered.table-hover
+    thead
+      tr
+        th.col-xs-1
+          | Region
+        th.col-sm-1[colspan="3"]
+    tbody
+      - @country.region.each do |region|
+        tr
+          td
+            =  region.name
+          td
+            = link_to 'Show', region_path(region), 
+                              class: "btn btn-default btn-xs btn-info"
+          td
+            = link_to 'Edit', edit_region_path(region), 
+                              class: "btn btn-default btn-xs btn-warning"
+          td
+            = link_to 'Destroy', region, method: :delete,
+                                 data: { confirm: 'Are you sure?' },
+                                 class: "btn btn-xs btn-danger"
+  .form-group
+    .col-sm-offset-4.col-sm-4.center
+      = link_to 'New Region', { controller: "regions", 
+                              action: "new", 
+                              country_id: @country.id },
+                            class: "btn btn-default"
+.col-sm-offset-4.col-sm-4.center
+  = link_to 'Back', countries_path, class: "btn btn-default"

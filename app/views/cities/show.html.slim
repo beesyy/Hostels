@@ -1,0 +1,38 @@
+.form-group.col-sm-offset-4.col-sm-4.center
+  p#notice
+    = notice
+
+  h4
+    strong
+      | City:
+    = @city.name
+    = link_to 'Edit', edit_city_path(@city), class: "btn btn-link"
+  table.table.table-striped.table-bordered.table-hover
+    thead
+      tr
+        th.col-xs-1
+          | Hostel
+        th.col-sm-1[colspan="3"]
+    tbody
+      - @city.hostel.each do |hostel|
+        tr
+          td
+            = hostel.name
+          td
+            = link_to 'Show', hostel, class: "btn btn-default btn-xs btn-info"
+          td
+            = link_to 'Edit', edit_hostel_path(hostel), 
+                              class: "btn btn-default btn-xs btn-warning"
+          td
+            = link_to 'Destroy', hostel, method: :delete,  
+                                 data: { confirm: 'Are you sure?' }, 
+                                 class: "btn btn-xs btn-danger"
+  .form-group
+    .col-sm-offset-4.col-sm-4.center
+      = link_to 'New Hostel', { controller: "hostels", 
+                                action: "new", 
+                                location_id: @city.id, 
+                                type: "City" },
+                                class: "btn btn-default"
+.col-sm-offset-4.col-sm-4.center
+  = link_to 'Back', @city.region, class: "btn btn-default"

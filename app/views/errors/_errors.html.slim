@@ -1,0 +1,10 @@
+#error_explanation
+  .alert.alert-danger.col-sm-offset-3.col-sm-6
+    h2
+      = pluralize(f.errors.count, "error")
+      |  prohibited this #{f.class} from being saved:
+    .form-group.col-sm-offset-3      
+      ul
+        - f.errors.full_messages.each do |message|
+          br 
+            = message

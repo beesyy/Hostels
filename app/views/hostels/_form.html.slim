@@ -1,0 +1,8 @@
+= form_for(@hostel, html: {class: "form-horizontal center"}) do |f|
+
+  - if disable
+    fieldset[disabled]
+      = render partial: 'hostel', locals: {f: f}
+  - else
+    fieldset
+      = render partial: 'hostel', locals: {f: f}

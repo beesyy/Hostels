@@ -1,0 +1,15 @@
+.col-sm-offset-4.col-sm-4.center
+  #notice
+    = notice
+    
+h1
+  | Show Hostel
+= render partial: 'form', locals: {disable: true}
+
+.col-sm-offset-4.col-sm-4.center
+  - if @hostel.location_type == "City"
+    = link_to 'Back', city_path(@hostel.location_id), 
+                      class: "btn btn-default"
+  - else
+    = link_to 'Back', region_path(@hostel.location_id), 
+                      class: "btn btn-default"
